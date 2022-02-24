@@ -3,7 +3,6 @@ package com.converter.jsontosql.converter;
 import com.converter.jsontosql.model.QueryParameters;
 import com.converter.jsontosql.service.impl.ConverterHelperService;
 import com.converter.jsontosql.util.Constants;
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

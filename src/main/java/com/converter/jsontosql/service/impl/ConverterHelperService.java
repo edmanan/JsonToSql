@@ -24,6 +24,7 @@ public class ConverterHelperService {
         log.info("Present Query with join: {}", resultQueryStringBuilder);
     }
 
+    //add table name to the query
     public void addTableNameIfJoinExists(StringBuilder resultQueryStringBuilder, String tableName, AtomicBoolean joinPresent) {
         if (joinPresent.get()) {
             resultQueryStringBuilder.append(Constants.EMPTY_STRING).append(tableName).append(Constants.PERIOD);
@@ -31,6 +32,7 @@ public class ConverterHelperService {
         }
     }
 
+    //add where condition to the query and other filters
     public void addWhereCondition(QueryParameters queryParameters, StringBuilder resultQueryStringBuilder,
                                   AtomicBoolean wherePresent) {
         if (wherePresent.get()) {
@@ -48,6 +50,7 @@ public class ConverterHelperService {
         log.info("Present Query with where: {}", resultQueryStringBuilder);
     }
 
+    //helper method to build query by adding operators
     public StringBuilder getStringBuilder(QueryParameters queryParameters, StringBuilder resultQueryStringBuilder, String tableName, AtomicBoolean joinPresent, AtomicBoolean wherePresent, String Operator) {
         addWhereCondition(queryParameters, resultQueryStringBuilder, wherePresent);
         addTableNameIfJoinExists(resultQueryStringBuilder, tableName, joinPresent);

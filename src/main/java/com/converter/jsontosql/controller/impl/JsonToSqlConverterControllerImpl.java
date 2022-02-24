@@ -28,6 +28,7 @@ public class JsonToSqlConverterControllerImpl implements JsonToSqlConverterContr
 		this.sqlQueryServiceImpl = sqlQueryServiceImpl;
 	}
 
+	//api to convert json to SQL query
 	@Override
 	@PostMapping(value = EndPointsRecognization.CONVERT)
 	public String convertJsonToSqlQuery(@RequestBody @Valid ConvertRequest request) throws Exception {

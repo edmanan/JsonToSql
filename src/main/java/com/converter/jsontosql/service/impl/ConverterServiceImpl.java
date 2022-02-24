@@ -33,6 +33,7 @@ public class ConverterServiceImpl implements ConverterService {
         this.conditionsConverterFactory = conditionsConverterFactory;
     }
 
+    //Service class method to convert json to sql
     @Override
     public String convertJsonToSqlQuery(ConvertRequest request) throws Exception {
         validateJsonRequest(request);
@@ -61,6 +62,7 @@ public class ConverterServiceImpl implements ConverterService {
         return resultQueryStringBuilder.toString();
     }
 
+    //validate request json
     private void validateJsonRequest(ConvertRequest request) throws Exception {
         log.info("Validating input request");
         String customErrorMessage = null;
@@ -87,6 +89,7 @@ public class ConverterServiceImpl implements ConverterService {
         log.info("Validation of input request is successful");
     }
 
+    //set the query params and various conditional operators
     private StringBuilder setQueryParameters(StringBuilder resultQueryStringBuilder, Table table, String tableName, AtomicBoolean joinPresent,
                                             AtomicBoolean wherePresent) throws Exception {
         if ((table.getQueryParameters() != null) && table.getQueryParameters().size() > 0) {
@@ -104,9 +107,11 @@ public class ConverterServiceImpl implements ConverterService {
                                            AtomicBoolean joinPresent, AtomicBoolean wherePresent) throws Exception {
         ConditionsConverter converter = conditionsConverterFactory.getConditionType(ConditionType.valueOf(queryParameters.getQueryOperator().toLowerCase()));
         log.info("Adding conditions to the Query");
+        //Factory pattern to determine condition and convert json to query accordingly
         return converter.convert(queryParameters, resultQueryStringBuilder, tableName, joinPresent, wherePresent, queryParameters.getQueryOperator().toLowerCase());
     }
 
+    //adding join to the query
     private void addJoinClauseToQuery(StringBuilder resultQueryStringBuilder, List<Joins> joins) {
         for (Joins join : joins) {
             sqlQueryHelperService.addJoinClauseToQuery(resultQueryStringBuilder, join, join.getJoinName().toLowerCase());

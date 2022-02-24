@@ -3,7 +3,6 @@ package com.converter.jsontosql.converter;
 import com.converter.jsontosql.model.QueryParameters;
 import com.converter.jsontosql.service.impl.ConverterHelperService;
 import com.converter.jsontosql.util.Constants;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
